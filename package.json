@@ -1,0 +1,40 @@
+{
+  "name": "@hivekit/external-app-control",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "An API that enables third party apps to control the Hivekit app",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build-minified": "esbuild src/index.js --bundle --format=esm --minify --outfile=dist/hivekit.min.js",
+    "build-unminified": "esbuild src/index.js --bundle --format=esm  --outfile=dist/hivekit.js",
+    "build": "npm run build-unminified && npm run build-minified",
+    "watch": "esbuild src/index.js --bundle --format=esm --outfile=dist/external-app-control.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hivekit/external-app-control.git"
+  },
+  "keywords": [
+    "hivekit",
+    "javascript",
+    "js",
+    "node",
+    "nodejs",
+    "client",
+    "websocket",
+    "connector"
+  ],
+  "author": "Hivekit Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hivekit/external-app-control/issues"
+  },
+  "homepage": "https://github.com/hivekit/external-app-control#readme",
+  "devDependencies": {
+    "esbuild": "^0.14.10"
+  },
+  "dependencies": {}
+}
