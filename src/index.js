@@ -33,17 +33,18 @@ export default class ExternalAppControl {
         }
     }
 
+    getTarget() {
+        return window.opener || window.parent;
+    }
     sendCommand(command, data) {
-        const target = window.parent || window.opener;
-        target.postMessage({ command, data }, '*');
+        this.getTarget().postMessage({ command, data }, '*');
     }
 
     async sendRequest(command, data) {
-        const target = window.parent || window.opener;
         const correlationId = Math.random().toString(36).substring(2, 15);
         return new Promise(resolve => {
             this.pendingRequests[correlationId] = resolve;
-            target.postMessage({ command, data, correlationId }, '*');
+            this.getTarget().postMessage({ command, data, correlationId }, '*');
         })
     }
 }
