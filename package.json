@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "build-minified": "esbuild src/index.js --bundle --format=esm --minify --outfile=dist/hivekit.min.js",
-    "build-unminified": "esbuild src/index.js --bundle --format=esm  --outfile=dist/hivekit.js",
+    "build-minified": "esbuild src/index.js --bundle --format=esm --minify --outfile=dist/external-app-control.min.js",
+    "build-unminified": "esbuild src/index.js --bundle --format=esm  --outfile=dist/external-app-control.js",
     "build": "npm run build-unminified && npm run build-minified",
     "watch": "esbuild src/index.js --bundle --format=esm --outfile=dist/external-app-control.js --watch"
   },
