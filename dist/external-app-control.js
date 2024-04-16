@@ -131,7 +131,8 @@ var inbound_commands_default = {
 
 // src/index.js
 var ExternalAppControl = class {
-  constructor() {
+  constructor(target) {
+    this.target = target || null;
     this.map = new Map(this);
     this.selection = new Selection(this);
     this.appWindow = new AppWindow(this);
@@ -143,7 +144,6 @@ var ExternalAppControl = class {
     if (correlationId) {
       const resolve = this.pendingRequests[correlationId];
       if (resolve) {
-        console.log("resolving", data);
         resolve(data);
         delete this.pendingRequests[correlationId];
       }
@@ -156,6 +156,9 @@ var ExternalAppControl = class {
     }
   }
   getTarget() {
+    if (this.target && this.target.contentWindow) {
+      return this.target.contentWindow;
+    }
     return window.opener || window.parent;
   }
   sendCommand(command, data) {

@@ -4,7 +4,8 @@ import AppWindow from './app-window.js';
 import inboundCommands from './inbound-commands.js';
 
 export default class ExternalAppControl {
-    constructor() {
+    constructor(target) {
+        this.target = target || null;
         this.map = new Map(this);
         this.selection = new Selection(this);
         this.appWindow = new AppWindow(this);
@@ -19,7 +20,6 @@ export default class ExternalAppControl {
             const resolve = this.pendingRequests[correlationId];
 
             if (resolve) {
-                console.log('resolving', data);
                 resolve(data);
                 delete this.pendingRequests[correlationId];
             }
@@ -34,6 +34,9 @@ export default class ExternalAppControl {
     }
 
     getTarget() {
+        if (this.target && this.target.contentWindow) {
+            return this.target.contentWindow;
+        }
         return window.opener || window.parent;
     }
     sendCommand(command, data) {
