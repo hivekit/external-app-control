@@ -10,7 +10,7 @@ export default class Selection extends EventEmitter {
         this.app.sendCommand('select', { id, type });
     }
 
-    unselect() {
+    deselect() {
         this.app.sendCommand('select', { id: null, type: null });
     }
 
