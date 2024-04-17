@@ -2,6 +2,7 @@
   "name": "@hivekit/external-app-control",
   "type": "module",
   "version": "0.0.1",
+  "private": false,
   "description": "An API that enables third party apps to control the Hivekit app",
   "main": "src/index.js",
   "directories": {
