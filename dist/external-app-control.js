@@ -101,11 +101,27 @@ var Selection = class extends EventEmitter {
   select(id, type) {
     this.app.sendCommand("select", { id, type });
   }
-  unselect() {
+  deselect() {
     this.app.sendCommand("select", { id: null, type: null });
   }
   async get() {
     return this.app.sendRequest("getSelection", null);
+  }
+};
+
+// src/object.js
+var Object = class {
+  constructor(app) {
+    this.app = app;
+  }
+  showPath(objectId, settings) {
+    this.app.sendCommand("showPathForObject", { objectId, settings });
+  }
+  hidePath(objectId) {
+    this.app.sendCommand("hidePathForObject", { objectId });
+  }
+  async isPathVisible(objectId) {
+    return await this.app.sendRequest("isPathForObjectVisible", { objectId });
   }
 };
 
@@ -135,6 +151,7 @@ var ExternalAppControl = class {
     this.target = target || null;
     this.map = new Map(this);
     this.selection = new Selection(this);
+    this.object = new Object(this);
     this.appWindow = new AppWindow(this);
     this.pendingRequests = {};
     window.addEventListener("message", this.handleMessage.bind(this));

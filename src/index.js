@@ -1,5 +1,6 @@
 import Map from './map.js'
 import Selection from './selection.js';
+import Object from './object.js';
 import AppWindow from './app-window.js';
 import inboundCommands from './inbound-commands.js';
 
@@ -8,6 +9,7 @@ export default class ExternalAppControl {
         this.target = target || null;
         this.map = new Map(this);
         this.selection = new Selection(this);
+        this.object = new Object(this);
         this.appWindow = new AppWindow(this);
         this.pendingRequests = {};
         window.addEventListener('message', this.handleMessage.bind(this));

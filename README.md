@@ -44,8 +44,37 @@ Select the entity with the given type and id. Type can be `'object'`, `'area'`, 
 #### `ctrl.selection.deselect()`
 Deselect the currently selected entity.
 
-#### `ctrl.selection.get()`
+#### `async ctrl.selection.get()`
 Get the currently selected entity. Returns an object with `id` and `type` properties.
 
 #### `ctrl.selection.on('change', (id, type) => {})`
 Listen to selection changes in the Hivekit app.
+
+### Object
+`ctrl.object.showPath(objectId, settings)`
+Show the path an object has taken. Settings is an object with the following properties:
+```javascript
+{
+    // 'arrow' or 'line'
+    type: 'arrow', 
+
+    // the timespan in milliseconds before now
+    timespan: 1000 * 60 * 60 * 24, // one day
+
+    // the following settings only apply if type==='arrow'
+
+    // how the color of the path is determined. Options are:
+    // - 'speed'  color is determined by the speed of the object ranging red-yellow-green
+    // - 'category' color is based on the object's category color
+    colorType: 'speed', 
+
+    // If colorType==='speed', the following settings determines the range of speeds for the coloring
+    speed: { min: 0, max: 10 }
+}
+```
+
+`ctrl.object.hidePath(objectId)`
+Hide the path of an object.
+
+`async ctrl.object.isPathVisible(objectId)`
+Returns true if there is a path visible for the object with the given id.

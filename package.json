@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": false,
+  
   "description": "An API that enables third party apps to control the Hivekit app",
   "main": "src/index.js",
   "directories": {
@@ -37,5 +38,8 @@
   "devDependencies": {
     "esbuild": "^0.14.10"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }
