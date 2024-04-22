@@ -51,7 +51,7 @@ Get the currently selected entity. Returns an object with `id` and `type` proper
 Listen to selection changes in the Hivekit app.
 
 ### Object
-`ctrl.object.showPath(objectId, settings)`
+#### `ctrl.object.showPath(objectId, settings)`
 Show the path an object has taken. Settings is an object with the following properties:
 ```javascript
 {
@@ -73,8 +73,8 @@ Show the path an object has taken. Settings is an object with the following prop
 }
 ```
 
-`ctrl.object.hidePath(objectId)`
+#### `ctrl.object.hidePath(objectId)`
 Hide the path of an object.
 
-`async ctrl.object.isPathVisible(objectId)`
+#### `async ctrl.object.isPathVisible(objectId)`
 Returns true if there is a path visible for the object with the given id.
